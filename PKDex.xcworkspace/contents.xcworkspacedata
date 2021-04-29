@@ -4,4 +4,19 @@
    <FileRef
       location = "group:PKDex-App/PKDex.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Modules/APIs">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Core">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/DesignSystem">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Listing">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Detail">
+   </FileRef>
 </Workspace>
