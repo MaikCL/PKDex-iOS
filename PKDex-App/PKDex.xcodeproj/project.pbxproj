@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AE555549263CAC5600373A01 /* SceneiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE555548263CAC5600373A01 /* SceneiOS.swift */; };
-		AE55554C263CAC8200373A01 /* Resolver-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = AE55554B263CAC8200373A01 /* Resolver-Dynamic */; };
-		AE55554D263CAC8200373A01 /* Resolver-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = AE55554B263CAC8200373A01 /* Resolver-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		AE5C500F263C94B100DA66DC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE5C500E263C94B100DA66DC /* Core */; };
-		AE5C5010263C94B100DA66DC /* Core in Embed Frameworks */ = {isa = PBXBuildFile; productRef = AE5C500E263C94B100DA66DC /* Core */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		AE55554F263CB70500373A01 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = AE55554E263CB70500373A01 /* Resolver */; };
+		AE555551263CB79500373A01 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE555550263CB79500373A01 /* Core */; };
 		AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF48425263B090A0012F640 /* PKDexApp.swift */; };
 		AEF4843C263B090C0012F640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF48427263B090C0012F640 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -23,8 +21,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AE55554D263CAC8200373A01 /* Resolver-Dynamic in Embed Frameworks */,
-				AE5C5010263C94B100DA66DC /* Core in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,8 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE55554C263CAC8200373A01 /* Resolver-Dynamic in Frameworks */,
-				AE5C500F263C94B100DA66DC /* Core in Frameworks */,
+				AE55554F263CB70500373A01 /* Resolver in Frameworks */,
+				AE555551263CB79500373A01 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +125,8 @@
 			);
 			name = "PKDex (iOS)";
 			packageProductDependencies = (
-				AE5C500E263C94B100DA66DC /* Core */,
-				AE55554B263CAC8200373A01 /* Resolver-Dynamic */,
+				AE55554E263CB70500373A01 /* Resolver */,
+				AE555550263CB79500373A01 /* Core */,
 			);
 			productName = "PKDex (iOS)";
 			productReference = AEF4842C263B090C0012F640 /* PKDex.app */;
@@ -386,12 +382,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AE55554B263CAC8200373A01 /* Resolver-Dynamic */ = {
+		AE55554E263CB70500373A01 /* Resolver */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AE55554A263CAC8200373A01 /* XCRemoteSwiftPackageReference "Resolver" */;
-			productName = "Resolver-Dynamic";
+			productName = Resolver;
 		};
-		AE5C500E263C94B100DA66DC /* Core */ = {
+		AE555550263CB79500373A01 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
 		};
