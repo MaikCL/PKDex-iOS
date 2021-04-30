@@ -5,9 +5,9 @@
         "package": "Altair-MDK",
         "repositoryURL": "https://github.com/mzapatae/AltairMDK-iOS.git",
         "state": {
-          "branch": null,
-          "revision": "685a537c0b87be05085dcde364200d96aed13aa2",
-          "version": "0.5.0"
+          "branch": "feature/basic-implementation",
+          "revision": "ced61bdfd47c6d76c5905ab4e28d52b247597d0e",
+          "version": null
         }
       },
       {
