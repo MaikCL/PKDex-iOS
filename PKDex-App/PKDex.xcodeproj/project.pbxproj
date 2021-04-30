@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE555549263CAC5600373A01 /* SceneiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE555548263CAC5600373A01 /* SceneiOS.swift */; };
+		AE55554C263CAC8200373A01 /* Resolver-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = AE55554B263CAC8200373A01 /* Resolver-Dynamic */; };
+		AE55554D263CAC8200373A01 /* Resolver-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = AE55554B263CAC8200373A01 /* Resolver-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		AE5C500F263C94B100DA66DC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE5C500E263C94B100DA66DC /* Core */; };
 		AE5C5010263C94B100DA66DC /* Core in Embed Frameworks */ = {isa = PBXBuildFile; productRef = AE5C500E263C94B100DA66DC /* Core */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF48425263B090A0012F640 /* PKDexApp.swift */; };
@@ -20,6 +23,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AE55554D263CAC8200373A01 /* Resolver-Dynamic in Embed Frameworks */,
 				AE5C5010263C94B100DA66DC /* Core in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -28,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AE555548263CAC5600373A01 /* SceneiOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneiOS.swift; sourceTree = "<group>"; };
 		AEF48425263B090A0012F640 /* PKDexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKDexApp.swift; sourceTree = "<group>"; };
 		AEF48427263B090C0012F640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEF4842C263B090C0012F640 /* PKDex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PKDex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE55554C263CAC8200373A01 /* Resolver-Dynamic in Frameworks */,
 				AE5C500F263C94B100DA66DC /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +89,7 @@
 		AEF4842E263B090C0012F640 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				AE555548263CAC5600373A01 /* SceneiOS.swift */,
 				AEF48446263B0BE80012F640 /* Supporting Files */,
 			);
 			path = iOS;
@@ -123,6 +130,7 @@
 			name = "PKDex (iOS)";
 			packageProductDependencies = (
 				AE5C500E263C94B100DA66DC /* Core */,
+				AE55554B263CAC8200373A01 /* Resolver-Dynamic */,
 			);
 			productName = "PKDex (iOS)";
 			productReference = AEF4842C263B090C0012F640 /* PKDex.app */;
@@ -151,6 +159,9 @@
 				Base,
 			);
 			mainGroup = AEF4841F263B090A0012F640;
+			packageReferences = (
+				AE55554A263CAC8200373A01 /* XCRemoteSwiftPackageReference "Resolver" */,
+			);
 			productRefGroup = AEF4842D263B090C0012F640 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -176,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE555549263CAC5600373A01 /* SceneiOS.swift in Sources */,
 				AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,7 +374,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		AE55554A263CAC8200373A01 /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		AE55554B263CAC8200373A01 /* Resolver-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE55554A263CAC8200373A01 /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = "Resolver-Dynamic";
+		};
 		AE5C500E263C94B100DA66DC /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
