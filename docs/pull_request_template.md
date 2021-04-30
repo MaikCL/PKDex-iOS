@@ -8,4 +8,4 @@
 
 ## Issue
 
-- Specify and link what issue this resolve
+- Specify and link what issue this resolve, use `closed`, `fixed` or `resolved`
