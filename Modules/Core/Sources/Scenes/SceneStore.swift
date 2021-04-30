@@ -14,8 +14,8 @@ final public class SceneStore: Store {
     public typealias State = SceneState
     public typealias Action = SceneAction
     
-    private var bag: Set<AnyCancellable> = ()
-    private var input: PassthroughSubject<SceneAction, Never> = ()
+    private var bag: Set<AnyCancellable> = .init()
+    private var input: PassthroughSubject<SceneAction, Never> = .init()
     
     @Injected private var sideEffects: SceneSideEffects
     @Published public var state: SceneState = .initial

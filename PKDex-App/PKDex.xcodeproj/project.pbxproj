@@ -3,13 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE5C500F263C94B100DA66DC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE5C500E263C94B100DA66DC /* Core */; };
+		AE5C5010263C94B100DA66DC /* Core in Embed Frameworks */ = {isa = PBXBuildFile; productRef = AE5C500E263C94B100DA66DC /* Core */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF48425263B090A0012F640 /* PKDexApp.swift */; };
 		AEF4843C263B090C0012F640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF48427263B090C0012F640 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AE5C5011263C94B100DA66DC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AE5C5010263C94B100DA66DC /* Core in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AEF48425263B090A0012F640 /* PKDexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKDexApp.swift; sourceTree = "<group>"; };
@@ -23,18 +39,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE5C500F263C94B100DA66DC /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE5C500D263C94B100DA66DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AEF4841F263B090A0012F640 = {
 			isa = PBXGroup;
 			children = (
 				AEF48424263B090A0012F640 /* Shared */,
 				AEF4842E263B090C0012F640 /* iOS */,
 				AEF4842D263B090C0012F640 /* Products */,
+				AE5C500D263C94B100DA66DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,12 +114,16 @@
 				AEF48428263B090C0012F640 /* Sources */,
 				AEF48429263B090C0012F640 /* Frameworks */,
 				AEF4842A263B090C0012F640 /* Resources */,
+				AE5C5011263C94B100DA66DC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "PKDex (iOS)";
+			packageProductDependencies = (
+				AE5C500E263C94B100DA66DC /* Core */,
+			);
 			productName = "PKDex (iOS)";
 			productReference = AEF4842C263B090C0012F640 /* PKDex.app */;
 			productType = "com.apple.product-type.application";
@@ -332,6 +361,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AE5C500E263C94B100DA66DC /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AEF48420263B090A0012F640 /* Project object */;
 }

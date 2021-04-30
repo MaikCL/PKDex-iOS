@@ -14,7 +14,7 @@ let package = Package(
             targets: ["Core"]),
     ],
     dependencies: [
-        .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", from: "0.5.0"),
+        .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", .branch("feature/basic-implementation")),
         .package(url: "https://github.com/hmlongco/Resolver.git", from: "1.4.1"),
     ],
     targets: [
