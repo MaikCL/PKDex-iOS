@@ -10,14 +10,19 @@ let package = Package(
     products: [
         .library(
             name: "Listing",
-            type: .dynamic,
             targets: ["Listing"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", .branch("feature/basic-implementation")),
+        .package(url: "https://github.com/hmlongco/Resolver.git", from: "1.4.1"),
+    ],
     targets: [
         .target(
             name: "Listing",
-            dependencies: [],
+            dependencies: [
+                "Altair-MDK",
+                "Resolver"
+            ],
             path: "Sources")
     ]
 )

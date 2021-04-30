@@ -10,7 +10,6 @@ let package = Package(
     products: [
         .library(
             name: "Core",
-            type: .dynamic,
             targets: ["Core"]),
     ],
     dependencies: [
@@ -22,7 +21,7 @@ let package = Package(
             name: "Core",
             dependencies: [
                 "Altair-MDK",
-                .product(name: "Resolver-Dynamic", package: "Resolver")
+                "Resolver"
             ],
             path: "Sources")
     ]

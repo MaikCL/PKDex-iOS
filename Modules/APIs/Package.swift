@@ -10,7 +10,6 @@ let package = Package(
     products: [
         .library(
             name: "APIs",
-            type: .dynamic,
             targets: ["APIs"]),
     ],
     dependencies: [
