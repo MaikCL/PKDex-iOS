@@ -5,9 +5,9 @@
 //  Created by Miguel Angel on 02-05-21.
 //
 
-import AltairMDKCommon
-import Resolver
 import Combine
+import Resolver
+import AltairMDKCommon
 
 final class ListingSideEffects {
     @LazyInjected private var getPokemonUseCase: GetPokemon
