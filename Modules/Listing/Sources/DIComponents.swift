@@ -11,7 +11,7 @@ import AltairMDKProviders
 final public class DIComponents {
     
     public static func bind() {
-    
+        
         // MARK: Data layer components
         Resolver.register { NetworkProvider(strategy: .nsUrlSession) }.implements(NetworkProviderProtocol.self)
         Resolver.register { ListingCloudSource() }.implements(ListingCloudSourceProtocol.self)
@@ -21,6 +21,11 @@ final public class DIComponents {
         // MARK: Domain layer components
         Resolver.register { (_, args) in GetPokemon(by: args()) }
 
+        // MARK: Presentation layer components
+        Resolver.register { PokemonMapper.mapEntityToModel }
+        Resolver.register { ListingSideEffects() }
+        Resolver.register { ListingStore() }
+        
     }
-    
+
 }
