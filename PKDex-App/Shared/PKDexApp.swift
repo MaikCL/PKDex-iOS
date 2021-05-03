@@ -6,6 +6,7 @@
 //
 
 import Core
+import Listing
 import SwiftUI
 
 @main
@@ -13,6 +14,7 @@ struct PKDexApp: App {
     
     init() {
         Core.DIComponents.bind()
+        Listing.DIComponents.bind()
     }
     
     var body: some Scene {

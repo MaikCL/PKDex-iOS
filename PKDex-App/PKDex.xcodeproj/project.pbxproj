@@ -10,6 +10,7 @@
 		AE555549263CAC5600373A01 /* SceneiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE555548263CAC5600373A01 /* SceneiOS.swift */; };
 		AE55554F263CB70500373A01 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = AE55554E263CB70500373A01 /* Resolver */; };
 		AE555551263CB79500373A01 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE555550263CB79500373A01 /* Core */; };
+		AE6A19C2263F845A000B0F6D /* Listing in Frameworks */ = {isa = PBXBuildFile; productRef = AE6A19C1263F845A000B0F6D /* Listing */; };
 		AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF48425263B090A0012F640 /* PKDexApp.swift */; };
 		AEF4843C263B090C0012F640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF48427263B090C0012F640 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE6A19C2263F845A000B0F6D /* Listing in Frameworks */,
 				AE55554F263CB70500373A01 /* Resolver in Frameworks */,
 				AE555551263CB79500373A01 /* Core in Frameworks */,
 			);
@@ -127,6 +129,7 @@
 			packageProductDependencies = (
 				AE55554E263CB70500373A01 /* Resolver */,
 				AE555550263CB79500373A01 /* Core */,
+				AE6A19C1263F845A000B0F6D /* Listing */,
 			);
 			productName = "PKDex (iOS)";
 			productReference = AEF4842C263B090C0012F640 /* PKDex.app */;
@@ -390,6 +393,10 @@
 		AE555550263CB79500373A01 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
+		};
+		AE6A19C1263F845A000B0F6D /* Listing */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Listing;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
