@@ -11,7 +11,7 @@
       location = "group:Modules/Core">
    </FileRef>
    <FileRef
-      location = "group:Modules/DesignSystem">
+      location = "group:Modules/Design">
    </FileRef>
    <FileRef
       location = "group:Modules/Listing">
