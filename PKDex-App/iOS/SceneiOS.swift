@@ -7,6 +7,7 @@
 
 import Core
 import SwiftUI
+import Listing
 import Resolver
 
 struct SceneiOS: Scene {
@@ -14,10 +15,11 @@ struct SceneiOS: Scene {
     @State private var sceneId = UUID()
     
     @StateObject private var sceneStore: SceneStore = Resolver.resolve()
+    @StateObject private var listingStore: ListingStore = Resolver.resolve()
 
     var body: some Scene {
         WindowGroup {
-            Text("Welcome to iOS Scene")
+            ListingUI().environmentObject(listingStore)
         }
         .onChange(of: phase) { newPhase in
             switch newPhase {
