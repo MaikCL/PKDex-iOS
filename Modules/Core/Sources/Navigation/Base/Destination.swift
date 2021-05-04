@@ -5,6 +5,7 @@
 //  Created by Miguel Angel on 04-05-21.
 //
 
-enum Destination {
-    
+public enum Destination {
+    case listing
+    case detail(id: String)
 }
