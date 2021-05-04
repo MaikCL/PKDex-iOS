@@ -12,7 +12,8 @@ let package = Package(
             name: "Detail",
             targets: ["Detail"]),
     ],
-    dependencies: [],
+    dependencies: [
+    ],
     targets: [
         .target(
             name: "Detail",
