@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE144240264626B3002EDAC9 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE14423F264626B3002EDAC9 /* AppRouter.swift */; };
+		AE144242264626FC002EDAC9 /* Listing in Frameworks */ = {isa = PBXBuildFile; productRef = AE144241264626FC002EDAC9 /* Listing */; };
+		AE14424426462700002EDAC9 /* Detail in Frameworks */ = {isa = PBXBuildFile; productRef = AE14424326462700002EDAC9 /* Detail */; };
+		AE14424626462709002EDAC9 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE14424526462709002EDAC9 /* Core */; };
 		AE555549263CAC5600373A01 /* SceneiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE555548263CAC5600373A01 /* SceneiOS.swift */; };
 		AE55554F263CB70500373A01 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = AE55554E263CB70500373A01 /* Resolver */; };
-		AE555551263CB79500373A01 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE555550263CB79500373A01 /* Core */; };
-		AE6A19C2263F845A000B0F6D /* Listing in Frameworks */ = {isa = PBXBuildFile; productRef = AE6A19C1263F845A000B0F6D /* Listing */; };
 		AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF48425263B090A0012F640 /* PKDexApp.swift */; };
 		AEF4843C263B090C0012F640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF48427263B090C0012F640 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -29,6 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AE14423F264626B3002EDAC9 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		AE555548263CAC5600373A01 /* SceneiOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneiOS.swift; sourceTree = "<group>"; };
 		AEF48425263B090A0012F640 /* PKDexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKDexApp.swift; sourceTree = "<group>"; };
 		AEF48427263B090C0012F640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -41,9 +44,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE6A19C2263F845A000B0F6D /* Listing in Frameworks */,
 				AE55554F263CB70500373A01 /* Resolver in Frameworks */,
-				AE555551263CB79500373A01 /* Core in Frameworks */,
+				AE14424626462709002EDAC9 /* Core in Frameworks */,
+				AE14424426462700002EDAC9 /* Detail in Frameworks */,
+				AE144242264626FC002EDAC9 /* Listing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF48425263B090A0012F640 /* PKDexApp.swift */,
+				AE14423F264626B3002EDAC9 /* AppRouter.swift */,
 				AEF48447263B0C0C0012F640 /* Resources */,
 			);
 			path = Shared;
@@ -128,8 +133,9 @@
 			name = "PKDex (iOS)";
 			packageProductDependencies = (
 				AE55554E263CB70500373A01 /* Resolver */,
-				AE555550263CB79500373A01 /* Core */,
-				AE6A19C1263F845A000B0F6D /* Listing */,
+				AE144241264626FC002EDAC9 /* Listing */,
+				AE14424326462700002EDAC9 /* Detail */,
+				AE14424526462709002EDAC9 /* Core */,
 			);
 			productName = "PKDex (iOS)";
 			productReference = AEF4842C263B090C0012F640 /* PKDex.app */;
@@ -188,6 +194,7 @@
 			files = (
 				AE555549263CAC5600373A01 /* SceneiOS.swift in Sources */,
 				AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */,
+				AE144240264626B3002EDAC9 /* AppRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,18 +392,22 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AE144241264626FC002EDAC9 /* Listing */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Listing;
+		};
+		AE14424326462700002EDAC9 /* Detail */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Detail;
+		};
+		AE14424526462709002EDAC9 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
 		AE55554E263CB70500373A01 /* Resolver */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AE55554A263CAC8200373A01 /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
-		};
-		AE555550263CB79500373A01 /* Core */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Core;
-		};
-		AE6A19C1263F845A000B0F6D /* Listing */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Listing;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

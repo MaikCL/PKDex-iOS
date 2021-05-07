@@ -25,7 +25,7 @@ let package = Package(
                 "Altair-MDK",
                 "Resolver",
                 "Design",
-                "APIs"
+                "APIs",
             ],
             path: "Sources")
     ]
