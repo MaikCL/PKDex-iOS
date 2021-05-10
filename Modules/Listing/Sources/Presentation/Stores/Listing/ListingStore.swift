@@ -25,7 +25,7 @@ final public class ListingStore: Store {
             initial: state,
             input: input,
             reduce: ListingReducer.reduce,
-            scheduler: RunLoop.main,
+            scheduler: DispatchQueue.main,
             sideEffects: [
                 sideEffects.whenInput(action: input.eraseToAnyPublisher()),
                 sideEffects.whenSearchPokemon()
