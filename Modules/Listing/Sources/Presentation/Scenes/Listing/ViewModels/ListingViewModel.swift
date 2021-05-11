@@ -18,7 +18,7 @@ final class ListingViewModel: ListingViewModelProtocol {
     @Published var exception: Exception? = .none
 
     private var bag = Set<AnyCancellable>()
-    private let router: Router
+    let router: Router?
 
     init(router: Router) {
         self.router = router
@@ -29,14 +29,10 @@ final class ListingViewModel: ListingViewModelProtocol {
 
 // MARK: ViewModel Methods Contract
 
-extension ListingViewModel {
+extension ListingViewModel  {
     
     func getPokemon(_ generation: PokemonGeneration) {
         listingStore.trigger(.searchPokemon(generation))
-    }
-    
-    func openDetail(id: String) -> AnyView {
-        router.route(to: .detail(id: id))
     }
     
 }
