@@ -17,7 +17,7 @@ final class ListingViewModel: ListingViewModelProtocol {
     @Published var pokemons: Loadable<[PokemonModel]> = .neverLoaded
     @Published var exception: Exception? = .none
 
-    private var bag = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
     let router: Router?
 
     init(router: Router) {
@@ -49,7 +49,7 @@ private extension ListingViewModel {
                 self?.pokemons = state.pokemons.map { ListingViewModel.mapPokemonState($0) }
                 self?.exception = state.exception
             }
-            .store(in: &bag)
+            .store(in: &cancellables)
     }
         
 }
