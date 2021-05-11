@@ -12,5 +12,5 @@ public protocol Router {
 }
 
 public protocol ViewModel: ObservableObject {
-    var router: Router { get }
+    var router: Router? { get }
 }
