@@ -23,7 +23,7 @@ final class AppRouter: Router {
                 return LazyView(ListingFactory.makeListingScene(with: self)).eraseToAnyView()
             case .detail:
                 // TODO: Temporal implementation
-                return LazyView(DetailView1(viewModel: DetailViewModel(router: self))).eraseToAnyView()
+                return LazyView(DetailView1()).eraseToAnyView()
         }
     }
     

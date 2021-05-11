@@ -5,15 +5,15 @@
 //  Created by Miguel Angel on 02-05-21.
 //
 
+import Core
 import SwiftUI
 import AltairMDKCommon
 
-// TODO: Try to make this List as Design component
-struct ListView: View {
-    var pokemons: Loadable<[PokemonModel]>
-    
+struct ListView<ViewModel: ListingViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
+        
     var body: some View {
-        switch pokemons {
+        switch viewModel.pokemons {
             case .neverLoaded:
                 Text("Never Loaded")
                 
@@ -22,24 +22,18 @@ struct ListView: View {
     
             case .loaded(let pokemons):
                 List(pokemons) { pokemon in
-                    CellView(name: pokemon.name)
-                }.environment(\.defaultMinListRowHeight, 60.0)
+                    NavigationLink(destination: viewModel.router?.route(to: .detail(id: ""))) {
+                        CellView(pokemon: pokemon)
+                    }
+                }
+                .environment(\.defaultMinListRowHeight, 60.0)
         }
     }
     
 }
 
 struct ListView_Previews: PreviewProvider {
-    private static let fakePokemons: [PokemonModel] = [
-        PokemonModel(name: "Venosaur"),
-        PokemonModel(name: "Blastoise"),
-        PokemonModel(name: "Charizard"),
-        PokemonModel(name: "Zapdos"),
-        PokemonModel(name: "Moltres"),
-        PokemonModel(name: "Articuno")
-    ]
-    
     static var previews: some View {
-        ListView(pokemons: .loaded(fakePokemons))
+        ListView(viewModel: ListingFakeViewModel(state: .loaded))
     }
 }
