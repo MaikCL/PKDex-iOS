@@ -18,7 +18,7 @@ struct ListingScene<ViewModel: ListingViewModelProtocol>: View {
             Group {
                 switch viewModel.exception {
                     case .none:
-                        ListView(viewModel: viewModel).navigationTitle("Pokemons")
+                        ListView(viewModel: viewModel).navigationTitle("Pokemons") // TODO: Localize this
                         
                     case .some(let exception):
                         ExceptionView(exception: exception)
