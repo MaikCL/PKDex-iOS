@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct CellView: View {
-    var name: String
+    var pokemon: PokemonModel
     
     var body: some View {
-        Text(name)
+        Text(pokemon.name)
     }
 }
 
 struct CellView_Previews: PreviewProvider {
+    private static let fakeModel = PokemonModel(name: "Zapdos")
     static var previews: some View {
-        CellView(name: "Lorem ipsum")
+        CellView(pokemon: fakeModel)
     }
 }

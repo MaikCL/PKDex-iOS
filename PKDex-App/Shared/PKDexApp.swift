@@ -17,6 +17,8 @@ struct PKDexApp: App {
         Listing.DIComponents.bind()
     }
     
+    // MARK: Scene
+    
     var body: some Scene {
         SceneiOS()
     }

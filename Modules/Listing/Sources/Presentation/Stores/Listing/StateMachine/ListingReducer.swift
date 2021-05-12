@@ -7,7 +7,7 @@
 
 final class ListingReducer {
     
-    public static func reduce(_ state: ListingState, _ action: ListingAction) -> ListingState {
+    static func reduce(_ state: ListingState, _ action: ListingAction) -> ListingState {
         var currentState = state
         switch action {
             case .searchPokemon:

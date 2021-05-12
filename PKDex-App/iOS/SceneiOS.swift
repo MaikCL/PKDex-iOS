@@ -7,7 +7,6 @@
 
 import Core
 import SwiftUI
-import Listing
 import Resolver
 
 struct SceneiOS: Scene {
@@ -15,11 +14,12 @@ struct SceneiOS: Scene {
     @State private var sceneId = UUID()
     
     @StateObject private var sceneStore: SceneStore = Resolver.resolve()
-    @StateObject private var listingStore: ListingStore = Resolver.resolve()
-
+    
+    private let router: AppRouter = AppRouter.shared
+    
     var body: some Scene {
         WindowGroup {
-            ListingUI().environmentObject(listingStore)
+            router.route(to: .listing)
         }
         .onChange(of: phase) { newPhase in
             switch newPhase {

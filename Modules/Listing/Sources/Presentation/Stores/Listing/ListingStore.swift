@@ -10,32 +10,32 @@ import Resolver
 import Foundation
 import AltairMDKCommon
 
-final public class ListingStore: Store {
-    public typealias State = ListingState
-    public typealias Action = ListingAction
+final class ListingStore: Store {
+    typealias State = ListingState
+    typealias Action = ListingAction
     
-    private var bag = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
     private var input = PassthroughSubject<ListingAction, Never>()
     
     @Injected private var sideEffects: ListingSideEffects
-    @Published public var state: ListingState = .initial
+    @Published var state: ListingState = .initial
     
-    public init() {
+    init() {
         Publishers.store(
             initial: state,
             input: input,
             reduce: ListingReducer.reduce,
-            scheduler: RunLoop.main,
+            scheduler: DispatchQueue.main,
             sideEffects: [
                 sideEffects.whenInput(action: input.eraseToAnyPublisher()),
                 sideEffects.whenSearchPokemon()
             ]
         )
         .assign(to: \.state, on: self)
-        .store(in: &bag)
+        .store(in: &cancellables)
     }
 
-    public func trigger(_ action: ListingAction) {
+    func trigger(_ action: ListingAction) {
         input.send(action)
     }
     

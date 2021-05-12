@@ -12,7 +12,7 @@ protocol ListingStateProtocol {
     var exception: Exception? { get set }
 }
 
-public struct ListingState: ListingStateProtocol {
+struct ListingState: ListingStateProtocol {
     var pokemons: Loadable<[Pokemon]>
     var exception: Exception?
 }
