@@ -20,11 +20,6 @@ struct PKDexApp: App {
     // MARK: Scene
     
     var body: some Scene {
-        WindowGroup {
-            SceneiOS()
-        }
+        SceneiOS()
     }
 }
-
-
-

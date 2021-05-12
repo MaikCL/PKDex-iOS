@@ -1,12 +1,12 @@
 //
-//  File.swift
+//  ListingFactory.swift
 //  
 //
 //  Created by Miguel Angel on 07-05-21.
 //
 
-import SwiftUI
 import Core
+import SwiftUI
 import AltairMDKCommon
 
 public enum ListingFactory {
