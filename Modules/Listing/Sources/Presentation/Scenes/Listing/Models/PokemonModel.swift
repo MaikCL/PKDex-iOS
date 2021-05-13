@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import AltairMDKCommon
 
 struct PokemonModel: Identifiable {
     let id = UUID()
     let name: String
+    var favorited: Toggleable
 }

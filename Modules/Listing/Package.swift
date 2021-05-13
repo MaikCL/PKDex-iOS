@@ -16,7 +16,8 @@ let package = Package(
         .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", .branch("feature/basic-implementation")),
         .package(url: "https://github.com/hmlongco/Resolver.git", from: "1.4.1"),
         .package(name: "Design", path: "../Design"),
-        .package(name: "APIs", path: "../APIs")
+        .package(name: "APIs", path: "../APIs"),
+        .package(name: "Core", path: "../Core")
     ],
     targets: [
         .target(
@@ -25,7 +26,8 @@ let package = Package(
                 "Altair-MDK",
                 "Resolver",
                 "Design",
-                "APIs"
+                "APIs",
+                "Core"
             ],
             path: "Sources")
     ]

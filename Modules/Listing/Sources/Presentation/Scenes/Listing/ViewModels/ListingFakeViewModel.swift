@@ -16,44 +16,44 @@ enum FakeState {
     case exception
 }
 
-final class ListingFakeViewModel: ListingViewModelProtocol {
-    @Published var pokemons: Loadable<[PokemonModel]>
-    @Published var exception: Exception?
-    
-    var router: Router?
-    
-    private let fakePokemons: [PokemonModel] = [
-        PokemonModel(name: "Venosaur"),
-        PokemonModel(name: "Blastoise"),
-        PokemonModel(name: "Charizard"),
-        PokemonModel(name: "Zapdos"),
-        PokemonModel(name: "Moltres"),
-        PokemonModel(name: "Articuno")
-    ]
-    
-    init(state: FakeState) {
-        switch state {
-            case .neverLoaded:
-                self.pokemons = .neverLoaded
-                self.exception = .none
-                
-            case .loading:
-                self.pokemons = .loading
-                self.exception = .none
-                
-            case .loaded:
-                self.pokemons = .loaded(fakePokemons)
-                self.exception = .none
-                
-            case .exception:
-                self.pokemons = .neverLoaded
-                self.exception = MapperException.cantMapToEntity
-        }
-
-    }
-    
-    func getPokemon(_ generation: PokemonGeneration) {
-        // Nothing to do for now
-    }
-    
-}
+//final class ListingFakeViewModel: ListingViewModelProtocol {
+//    @Published var pokemons: Loadable<[PokemonModel]>
+//    @Published var exception: Exception?
+//    
+//    var router: Router?
+//    
+//    private let fakePokemons: [PokemonModel] = [
+//        PokemonModel(name: "Venosaur", favorited: .off),
+//        PokemonModel(name: "Blastoise",favorited: .on),
+//        PokemonModel(name: "Charizard", favorited: .off),
+//        PokemonModel(name: "Zapdos", favorited: .on),
+//        PokemonModel(name: "Moltres", favorited: .on),
+//        PokemonModel(name: "Articuno", favorited: .off)
+//    ]
+//    
+//    init(state: FakeState) {
+//        switch state {
+//            case .neverLoaded:
+//                self.pokemons = .neverLoaded
+//                self.exception = .none
+//                
+//            case .loading:
+//                self.pokemons = .loading
+//                self.exception = .none
+//                
+//            case .loaded:
+//                self.pokemons = .loaded(fakePokemons)
+//                self.exception = .none
+//                
+//            case .exception:
+//                self.pokemons = .neverLoaded
+//                self.exception = MapperException.cantMapToEntity
+//        }
+//
+//    }
+//    
+//    func getPokemon(_ generation: PokemonGeneration) {
+//        // Nothing to do for now
+//    }
+//    
+//}

@@ -11,7 +11,7 @@ import SwiftUI
 import AltairMDKCommon
 
 struct ListingScene<ViewModel: ListingViewModelProtocol>: View {
-    @ObservedObject private(set) var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
     
     var body: some View {
         NavigationView {
