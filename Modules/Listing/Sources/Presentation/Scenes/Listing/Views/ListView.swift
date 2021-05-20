@@ -12,21 +12,22 @@ import AltairMDKCommon
 struct ListView<ViewModel: ListingViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
     
-    
     var body: some View {
         Group {
             switch viewModel.pokemons {
                 case .neverLoaded:
-                    Text("Never Loaded").eraseToAnyView()
+                    Text("Never Loaded")
                     
                 case .loading:
-                    Text("Loading").eraseToAnyView()
+                    Text("Loading")
                     
                 case .loaded(let pokemons):
-//                    List(pokemonsState.indices) { index in
-//                        CellView(pokemon: $pokemonsState[index])
-//                    }.environment(\.defaultMinListRowHeight, 60.0).eraseToAnyView()
-                Text("loaded")
+                    List(pokemons) { pokemon in
+                        CellView(pokemon: pokemon, favoriteAction: { favoriteState in
+                            viewModel.favoritePokemon(id: pokemon.id, state: favoriteState)
+                        })
+                    }
+                    .environment(\.defaultMinListRowHeight, 60.0)
             }
         }
     }

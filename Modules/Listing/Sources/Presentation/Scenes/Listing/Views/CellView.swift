@@ -10,13 +10,22 @@ import SwiftUI
 import AltairMDKCommon
 
 struct CellView: View {
-    @Binding var pokemon: PokemonModel
+    var pokemon: PokemonModel
+    var favoriteAction: (Toggleable) -> Void
     
     var body: some View {
         HStack {
             Text(pokemon.name)
             Spacer()
-            FavoriteButtonView(isFavorited: $pokemon.favorited)
+            (pokemon.favorited.state ? SFSymbol.favorited.image : SFSymbol.unfavorited.image)
+                .onTapGesture {
+                    switch pokemon.favorited {
+                        case .on:
+                            favoriteAction(.off)
+                        case .off:
+                            favoriteAction(.on)
+                    }
+                }
         }
     }
 

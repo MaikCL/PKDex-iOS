@@ -13,7 +13,7 @@ final class PokemonMapper: ModelMapper {
     typealias Model = [PokemonModel]
     
     static var mapEntityToModel: ([Pokemon]) -> [PokemonModel] = { pokemons in
-        return pokemons.compactMap { PokemonModel(name: $0.name, favorited: .off) }
+        return pokemons.compactMap { PokemonModel(id: $0.id, name: $0.name, favorited: .off) }
     }
 
 }

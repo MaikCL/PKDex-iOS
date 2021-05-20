@@ -35,6 +35,10 @@ extension ListingViewModel  {
         listingStore.trigger(.searchPokemon(generation))
     }
     
+    func favoritePokemon(id: Int, state: Toggleable) {
+        // store connection
+    }
+    
 }
 
 // MARK: Store State Mapping
