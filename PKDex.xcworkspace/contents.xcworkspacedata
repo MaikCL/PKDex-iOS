@@ -19,4 +19,7 @@
    <FileRef
       location = "group:Modules/Detail">
    </FileRef>
+   <FileRef
+      location = "group:Modules/Favorites">
+   </FileRef>
 </Workspace>
