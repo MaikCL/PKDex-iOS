@@ -28,8 +28,8 @@ final class FavoritesLocalSource: FavoritesLocalSourceProtocol {
         return storageProvider.agent.delete(object: favorite)
     }
     
-    func getFavorites<T>() -> AnyPublisher<[T], StorageException> where T: Storable {
-        return storageProvider.agent.readAll(predicate: .none, sorted: .none).eraseToAnyPublisher()
+    func getFavorites() -> AnyPublisher<[FavoritesLocalModel], StorageException> {
+        return storageProvider.agent.readAll(FavoritesLocalModel.self, predicate: .none, sorted: .none).eraseToAnyPublisher()
     }
 
 }
