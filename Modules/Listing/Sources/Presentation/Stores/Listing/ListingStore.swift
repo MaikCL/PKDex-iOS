@@ -18,20 +18,21 @@ final class ListingStore: Store {
     private var input = PassthroughSubject<ListingAction, Never>()
     
     @Injected private var sideEffects: ListingSideEffects
-    @Published var state: ListingState = .initial
+    @Published private(set) var state: ListingState
     
     init() {
+        state = .initial
         Publishers.store(
             initial: state,
-            input: input,
             reduce: ListingReducer.reduce,
             scheduler: DispatchQueue.main,
             sideEffects: [
                 sideEffects.whenInput(action: input.eraseToAnyPublisher()),
-                sideEffects.whenSearchPokemon()
+                sideEffects.whenSearchPokemon(),
+                sideEffects.whenExceptionOccurs()
             ]
         )
-        .assign(to: \.state, on: self)
+        .assignNoRetain(to: \.state, on: self)
         .store(in: &cancellables)
     }
 

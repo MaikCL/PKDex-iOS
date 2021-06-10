@@ -14,5 +14,7 @@ protocol ListingViewModelProtocol: ViewModel {
     var exception: Exception? { get }
     
     func getPokemon(_ generation: PokemonGeneration)
+    func getFavorites()
     func favoritePokemon(id: Int, state: Toggleable)
+    func temporalPrint()
 }

@@ -6,6 +6,7 @@
 //
 
 import Resolver
+import Foundation
 import AltairMDKProviders
 
 final public class DIComponents {
@@ -13,7 +14,8 @@ final public class DIComponents {
     public static func bind() {
         
         // MARK: Data layer components
-        Resolver.register { StorageProvider(strategy: .coreData) }.implements(StorageProviderProtocol.self)
+        let dbUrl = Bundle.module.url(forResource: "FavoritesModel", withExtension: "momd")
+        Resolver.register { StorageProvider(strategy: .coreData(dbFile: dbUrl)) }.implements(StorageProviderProtocol.self)
         Resolver.register { FavoritesLocalSource() }.implements(FavoritesLocalSourceProtocol.self)
         Resolver.register { FavoritesRepository() }.implements(FavoritesRepositoryProtocol.self)
         Resolver.register { FavoritesLocalMapper.mapModelToEntity }
@@ -37,3 +39,6 @@ final public class DIComponents {
     }
 
 }
+
+
+//Bundle.module.url(forResource:"FavoritesModel", withExtension: "momd")

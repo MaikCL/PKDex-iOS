@@ -13,6 +13,7 @@
 		AE14424626462709002EDAC9 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = AE14424526462709002EDAC9 /* Core */; };
 		AE555549263CAC5600373A01 /* SceneiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE555548263CAC5600373A01 /* SceneiOS.swift */; };
 		AE55554F263CB70500373A01 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = AE55554E263CB70500373A01 /* Resolver */; };
+		AED1A3C72671A67E002CC74B /* Favorites in Frameworks */ = {isa = PBXBuildFile; productRef = AED1A3C62671A67E002CC74B /* Favorites */; };
 		AEF48438263B090C0012F640 /* PKDexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF48425263B090A0012F640 /* PKDexApp.swift */; };
 		AEF4843C263B090C0012F640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF48427263B090C0012F640 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE55554F263CB70500373A01 /* Resolver in Frameworks */,
+				AED1A3C72671A67E002CC74B /* Favorites in Frameworks */,
 				AE14424626462709002EDAC9 /* Core in Frameworks */,
 				AE14424426462700002EDAC9 /* Detail in Frameworks */,
 				AE144242264626FC002EDAC9 /* Listing in Frameworks */,
@@ -136,6 +138,7 @@
 				AE144241264626FC002EDAC9 /* Listing */,
 				AE14424326462700002EDAC9 /* Detail */,
 				AE14424526462709002EDAC9 /* Core */,
+				AED1A3C62671A67E002CC74B /* Favorites */,
 			);
 			productName = "PKDex (iOS)";
 			productReference = AEF4842C263B090C0012F640 /* PKDex.app */;
@@ -408,6 +411,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AE55554A263CAC8200373A01 /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
+		};
+		AED1A3C62671A67E002CC74B /* Favorites */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Favorites;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

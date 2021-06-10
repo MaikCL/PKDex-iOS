@@ -7,20 +7,9 @@
 
 import AltairMDKCommon
 
-protocol ListingStateProtocol {
-    var pokemons: Loadable<[Pokemon]> { get set }
-    var exception: Exception? { get set }
-}
-
-struct ListingState: ListingStateProtocol {
-    var pokemons: Loadable<[Pokemon]>
-    var exception: Exception?
-}
-
-extension ListingState {
-    static var initial: ListingState {
-        .init(
-            pokemons: .neverLoaded,
-            exception: .none)
-    }
+enum ListingState {
+    case initial
+    case loading(PokemonGeneration)
+    case loaded([Pokemon])
+    case exception(Exception)
 }

@@ -11,6 +11,8 @@ import AltairMDKProviders
 
 @objc(FavoritesLocalModel)
 public class FavoritesLocalModel: NSManagedObject, Storable {
+    public static var entityName: String = "Favorite"
+    
     @NSManaged public var id: Int16
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<FavoritesLocalModel> {

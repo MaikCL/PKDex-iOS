@@ -7,10 +7,8 @@
 
 import AltairMDKCommon
 
-enum FavoritesAction {
-    case getFavorites(_ result: Set<Int>)
-    case favorite(id: Int)
-    case unfavorite(id: Int)
-    case favoritedFailed(_ exception: Exception, id: Int)
-    case unfavoritedFailed(_ exception: Exception, id: Int)
+public enum FavoritesAction {
+    case getFavorites
+    case getFavoritesSucceeded(_ results: Set<Int>)
+    case getFavoritesFailed(_ exception: Exception)
 }

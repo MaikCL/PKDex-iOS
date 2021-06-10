@@ -9,10 +9,12 @@ import Core
 import Combine
 import SwiftUI
 import Resolver
+import Favorites
 import AltairMDKCommon
 
 final class ListingViewModel: ListingViewModelProtocol {
     @ObservedObject private var listingStore: ListingStore = Resolver.resolve()
+    @ObservedObject private var favoritesStore: FavoritesStore = Resolver.resolve()
 
     @Published var pokemons: Loadable<[PokemonModel]> = .neverLoaded
     @Published var exception: Exception? = .none
@@ -35,8 +37,27 @@ extension ListingViewModel  {
         listingStore.trigger(.searchPokemon(generation))
     }
     
+    func getFavorites() {
+        print("viewModel: GetFavorites")
+        favoritesStore.trigger(.getFavorites)
+    }
+    
+    //temporal
+    func temporalPrint() {
+        print(favoritesStore.state.favorites)
+    }
+
     func favoritePokemon(id: Int, state: Toggleable) {
-        // store connection
+//        switch state {
+//            case .on:
+//                favoritesStore.trigger(.favorite(id: id))
+//            case .off:
+//                favoritesStore.trigger(.unfavorite(id: id))
+//        }
+        
+        // TEMPORAL
+//        favoritesStore.trigger(.getFavorites)
+//        print(favoritesStore.state)
     }
     
 }
@@ -50,8 +71,16 @@ private extension ListingViewModel {
         listingStore.$state
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
-                self?.pokemons = state.pokemons.map { ListingViewModel.mapPokemonState($0) }
-                self?.exception = state.exception
+                switch state {
+                    case .initial:
+                        self?.pokemons = .neverLoaded
+                    case .loading(_):
+                        self?.pokemons = .loading
+                    case .loaded(let results):
+                        self?.pokemons = .loaded(ListingViewModel.mapPokemonState(results))
+                    case .exception(let error):
+                        self?.exception = error
+                }
             }
             .store(in: &cancellables)
     }

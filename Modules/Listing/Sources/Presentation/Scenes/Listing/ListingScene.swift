@@ -12,6 +12,7 @@ import AltairMDKCommon
 
 struct ListingScene<ViewModel: ListingViewModelProtocol>: View {
     @EnvironmentObject var viewModel: ViewModel
+    @State var didAppear = false
     
     var body: some View {
         NavigationView {
@@ -19,17 +20,25 @@ struct ListingScene<ViewModel: ListingViewModelProtocol>: View {
                 switch viewModel.exception {
                     case .none:
                         ListView(viewModel: viewModel).navigationTitle("Pokemons") // TODO: Localize this
+                            
+                        let _ = print("Estado Favoritos")
+                        let _ = viewModel.temporalPrint()
+//                        let _ = viewModel.favoritePokemon(id: 13, state: .on)
                         
                     case .some(let exception):
                         ExceptionView(exception: exception)
                 }
             }
-            .onAppear {
-                if case .neverLoaded = viewModel.pokemons {
-                    viewModel.getPokemon(.generationI)
-                }
-            }
+            .onAppear(perform: onLoad)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    func onLoad() {
+        if !didAppear {
+            viewModel.getPokemon(.generationI)
+            viewModel.getFavorites()
+        }
+        didAppear = true
     }
 }

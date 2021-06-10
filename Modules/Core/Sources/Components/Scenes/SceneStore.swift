@@ -18,19 +18,19 @@ final public class SceneStore: Store {
     private var input: PassthroughSubject<SceneAction, Never> = .init()
     
     @Injected private var sideEffects: SceneSideEffects
-    @Published public var state: SceneState = .initial
-    
+    @Published private(set) public var state: SceneState
+
     public init() {
+        state = .initial
         Publishers.store(
             initial: state,
-            input: input,
             reduce: SceneReducer.reduce(_:_:),
             scheduler: RunLoop.main,
             sideEffects: [
                 sideEffects.whenInput(input.eraseToAnyPublisher())
             ]
         )
-        .assign(to: \.state, on: self)
+        .assignNoRetain(to: \.state, on: self)
         .store(in: &bag)
     }
     

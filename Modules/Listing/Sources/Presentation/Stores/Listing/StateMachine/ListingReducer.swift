@@ -8,21 +8,14 @@
 final class ListingReducer {
     
     static func reduce(_ state: ListingState, _ action: ListingAction) -> ListingState {
-        var currentState = state
         switch action {
-            case .searchPokemon:
-                currentState.pokemons = .loading
-                currentState.exception = .none
-
+            case .searchPokemon(let generation):
+                return .loading(generation)
             case .searchedPokemonSuccess(let results):
-                currentState.pokemons = .loaded(results)
-                currentState.exception = .none
-
+                return .loaded(results)
             case .searchedPokemonFailed(let exception):
-                currentState.pokemons = .neverLoaded
-                currentState.exception = exception
+                return .exception(exception)
         }
-        return currentState
     }
     
 }

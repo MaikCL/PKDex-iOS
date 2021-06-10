@@ -7,16 +7,24 @@
 
 import AltairMDKCommon
 
-protocol FavoritesStateProtocol {
-    var favorites: Set<Int> { get set }
+public struct FavoritesState {
+    public var favorites: Set<Int>
+    public var exception: Exception?
+    var runningSideEffect: SideEffectTask
 }
 
-struct FavoritesState: FavoritesStateProtocol {
-    var favorites: Set<Int>
+enum SideEffectTask {
+    case none
+    case whenGetFavorites
+    case whenExceptionHappen
 }
 
 extension FavoritesState {
     static var initial: FavoritesState {
-        .init(favorites: .init())
+        .init(
+            favorites: [],
+            exception: .none,
+            runningSideEffect: .none
+        )
     }
 }

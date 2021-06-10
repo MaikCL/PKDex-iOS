@@ -10,7 +10,7 @@ import AltairMDKCommon
 
 final class SceneSideEffects {
     
-    func whenInput(_ action: AnyPublisher<SceneAction, Never>) -> SideEffect<SceneAction> {
+    func whenInput(_ action: AnyPublisher<SceneAction, Never>) -> SideEffect<SceneState, SceneAction> {
         SideEffect { _ in action }
     }
     

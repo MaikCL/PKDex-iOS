@@ -6,8 +6,9 @@
 //
 
 import Core
-import Listing
 import SwiftUI
+import Listing
+import Favorites
 
 @main
 struct PKDexApp: App {
@@ -15,6 +16,7 @@ struct PKDexApp: App {
     init() {
         Core.DIComponents.bind()
         Listing.DIComponents.bind()
+        Favorites.DIComponents.bind()
     }
     
     // MARK: Scene
