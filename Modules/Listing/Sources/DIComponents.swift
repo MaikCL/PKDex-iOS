@@ -19,7 +19,7 @@ final public class DIComponents {
         Resolver.register { ListingCloudMapper.mapModelToEntity }
         
         // MARK: Domain layer components
-        Resolver.register { (_, args) in GetPokemon(by: args()) }
+        Resolver.register { GetPokemonByGeneration() }.implements(GetPokemonByGenerationProtocol.self)
 
         // MARK: Presentation layer components
         Resolver.register { PokemonMapper.mapEntityToModel }

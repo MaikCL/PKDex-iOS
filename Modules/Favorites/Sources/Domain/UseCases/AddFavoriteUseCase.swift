@@ -9,18 +9,11 @@ import Combine
 import Resolver
 import AltairMDKCommon
 
-final class AddFavorite: UseCase {
-    typealias T = Void
-    
-    private let id: Int
-    
+final class AddFavoriteUseCase: AddFavoriteUseCaseProtocol {
     @Injected private var favoritesRepo: FavoritesRepositoryProtocol
     
-    init(id: Int) {
-        self.id = id
-    }
-    
-    func execute() -> AnyPublisher<Void, Error> {
+    func execute(id: Int) -> AnyPublisher<Void, Error> {
         return favoritesRepo.addFavorite(id: id)
     }
+    
 }

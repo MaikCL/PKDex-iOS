@@ -9,13 +9,10 @@ import Combine
 import Resolver
 import AltairMDKCommon
 
-final class GetFavorites: UseCase {
-    typealias T = Set<Int>
-    
+final class GetFavoritesUseCase: GetFavoritesUseCaseProtocol {
     @Injected private var favoritesRepo: FavoritesRepositoryProtocol
     
     func execute() -> AnyPublisher<Set<Int>, Error> {
         return favoritesRepo.getFavorites()
     }
-    
 }

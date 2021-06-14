@@ -20,17 +20,10 @@ final public class DIComponents {
         Resolver.register { FavoritesRepository() }.implements(FavoritesRepositoryProtocol.self)
         Resolver.register { FavoritesLocalMapper.mapModelToEntity }
         
-        
-//        Resolver.register { NetworkProvider(strategy: .nsUrlSession) }.implements(NetworkProviderProtocol.self)
-//        Resolver.register { ListingCloudSource() }.implements(ListingCloudSourceProtocol.self)
-//        Resolver.register { ListingRepository() }.implements(ListingRepositoryProtocol.self)
-//        Resolver.register { ListingCloudMapper.mapModelToEntity }
-        
         // MARK: Domain layer components
-//        Resolver.register { (_, args) in GetPokemon(by: args()) }
-        Resolver.register { (_, args) in AddFavorite(id: args()) }
-        Resolver.register { (_, args) in RemoveFavorite(id: args()) }
-        Resolver.register { GetFavorites() }
+        Resolver.register { AddFavoriteUseCase() }.implements(AddFavoriteUseCaseProtocol.self)
+        Resolver.register { GetFavoritesUseCase() }.implements(GetFavoritesUseCaseProtocol.self)
+        Resolver.register { RemoveFavoriteUseCase() }.implements(RemoveFavoriteUseCaseProtocol.self)
 
         // MARK: Presentation layer components
         Resolver.register { FavoritesSideEffects() }
@@ -39,6 +32,3 @@ final public class DIComponents {
     }
 
 }
-
-
-//Bundle.module.url(forResource:"FavoritesModel", withExtension: "momd")

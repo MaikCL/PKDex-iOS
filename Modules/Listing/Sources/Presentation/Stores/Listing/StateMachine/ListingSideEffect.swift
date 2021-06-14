@@ -10,7 +10,7 @@ import Resolver
 import AltairMDKCommon
 
 final class ListingSideEffects {
-    @LazyInjected private var getPokemonUseCase: GetPokemon
+    @Injected private var getPokemonUseCase: GetPokemonByGenerationProtocol
     
     func whenInput(action: AnyPublisher<ListingAction, Never>) -> SideEffect<ListingState, ListingAction> {
         SideEffect { _ in action }
@@ -19,9 +19,8 @@ final class ListingSideEffects {
     func whenSearchPokemon() -> SideEffect<ListingState, ListingAction> {
         SideEffect { state -> AnyPublisher<ListingAction, Never> in
             guard case .loading(let generation) = state else { return Empty().eraseToAnyPublisher() }
-            self.$getPokemonUseCase.args = generation
             return self.getPokemonUseCase
-                .execute()
+                .execute(generation: generation)
                 .map { .searchedPokemonSuccess($0) }
                 .replaceEmpty(with: .searchedPokemonFailed(ListingException.noResults))
                 .catch { Just(.searchedPokemonFailed($0 as? Exception ?? ListingException.unknown($0))) }
@@ -38,5 +37,3 @@ final class ListingSideEffects {
     }
 
 }
-
-
