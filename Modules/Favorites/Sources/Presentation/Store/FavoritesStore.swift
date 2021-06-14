@@ -28,7 +28,8 @@ public final class FavoritesStore: Store {
             sideEffects: [
                 sideEffects.whenGetFavorites(),
                 sideEffects.whenExceptionHappen(),
-                sideEffects.whenAddingFavorite(),
+                sideEffects.whenFavorite(),
+                sideEffects.whenUnfavorite(),
                 sideEffects.whenInput(action: input.eraseToAnyPublisher())
             ]
         )

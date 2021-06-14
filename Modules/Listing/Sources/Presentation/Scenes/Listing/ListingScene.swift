@@ -20,10 +20,6 @@ struct ListingScene<ViewModel: ListingViewModelProtocol>: View {
                 switch viewModel.exception {
                     case .none:
                         ListView(viewModel: viewModel).navigationTitle("Pokemons") // TODO: Localize this
-                            
-                        let _ = print("Estado Favoritos")
-                        let _ = viewModel.temporalPrint()
-//                        let _ = viewModel.favoritePokemon(id: 13, state: .on)
                         
                     case .some(let exception):
                         ExceptionView(exception: exception)

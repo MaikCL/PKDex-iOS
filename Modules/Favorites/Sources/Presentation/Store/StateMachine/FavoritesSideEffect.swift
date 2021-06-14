@@ -30,9 +30,9 @@ final class FavoritesSideEffects {
         }
     }
     
-    func whenAddingFavorite() -> SideEffect<FavoritesState, FavoritesAction> {
+    func whenFavorite() -> SideEffect<FavoritesState, FavoritesAction> {
         SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
-            guard case .whenAddingFavorite(let id) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
+            guard case .whenFavorite(let id) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
             print("Ejecutando SideEffect Adding Favorite id: \(id)")
             return self.addFavoritesUseCase
                 .execute(id: id)
@@ -42,10 +42,22 @@ final class FavoritesSideEffects {
         }
     }
     
+    func whenUnfavorite() -> SideEffect<FavoritesState, FavoritesAction> {
+        SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
+            guard case .whenUnfavorite(let id) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
+            print("Ejecutando SideEffect Removing Favorite id: \(id)")
+            return self.removeFavoritesUseCase
+                .execute(id: id)
+                .map { .unfavoriteSucceeded(id: id) }
+                .catch { Just(.favoriteFailed($0 as? Exception ?? FavoritesException.unknown($0))) }
+                .eraseToAnyPublisher()
+        }
+    }
+    
     func whenExceptionHappen() -> SideEffect<FavoritesState, FavoritesAction> {
         SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
             guard case .whenExceptionHappen = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
-            print("Se logeara excepcion: \(String(describing: state.exception?.localizedDescription))")
+            print("An exception occurred: \(String(describing: state.exception?.localizedDescription))")
             return Empty().eraseToAnyPublisher()
         }
     }

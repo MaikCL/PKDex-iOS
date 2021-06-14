@@ -7,9 +7,24 @@
 
 import AltairMDKCommon
 
-enum ListingState {
-    case initial
-    case loading(PokemonGeneration)
-    case loaded([Pokemon])
-    case exception(Exception)
+struct ListingState {
+    var pokemons: Loadable<[Pokemon]>
+    var exception: Exception?
+    var runningSideEffect: SideEffectTask
+}
+
+enum SideEffectTask {
+    case none
+    case whenLoadingPokemon(generation: PokemonGeneration)
+    case whenExceptionHappen
+}
+
+extension ListingState {
+    static var initial: ListingState {
+        .init(
+            pokemons: .neverLoaded,
+            exception: .none,
+            runningSideEffect: .none
+        )
+    }
 }

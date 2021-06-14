@@ -14,4 +14,7 @@ public enum FavoritesAction {
     case favorite(id: Int)
     case favoriteSucceeded(id: Int)
     case favoriteFailed(_ exception: Exception)
+    case unfavorite(id: Int)
+    case unfavoriteSucceeded(id: Int)
+    case unfavoriteFailed(_ exception: Exception)
 }

@@ -28,8 +28,8 @@ final class ListingStore: Store {
             scheduler: DispatchQueue.main,
             sideEffects: [
                 sideEffects.whenInput(action: input.eraseToAnyPublisher()),
-                sideEffects.whenSearchPokemon(),
-                sideEffects.whenExceptionOccurs()
+                sideEffects.whenLoadingPokemon(),
+                sideEffects.whenExceptionHappen()
             ]
         )
         .assignNoRetain(to: \.state, on: self)

@@ -17,7 +17,8 @@ enum SideEffectTask {
     case none
     case whenGetFavorites
     case whenExceptionHappen
-    case whenAddingFavorite(id: Int)
+    case whenFavorite(id: Int)
+    case whenUnfavorite(id: Int)
 }
 
 extension FavoritesState {

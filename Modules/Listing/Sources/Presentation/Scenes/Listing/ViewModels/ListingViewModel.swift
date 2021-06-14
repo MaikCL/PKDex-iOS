@@ -11,6 +11,7 @@ import SwiftUI
 import Resolver
 import Favorites
 import AltairMDKCommon
+import Foundation
 
 final class ListingViewModel: ListingViewModelProtocol {
     @ObservedObject private var listingStore: ListingStore = Resolver.resolve()
@@ -42,22 +43,15 @@ extension ListingViewModel  {
         favoritesStore.trigger(.getFavorites)
     }
     
-    //temporal
-    func temporalPrint() {
-        print(favoritesStore.state.favorites)
-    }
-
     func favoritePokemon(id: Int, state: Toggleable) {
-//        switch state {
-//            case .on:
-//                favoritesStore.trigger(.favorite(id: id))
-//            case .off:
-//                favoritesStore.trigger(.unfavorite(id: id))
-//        }
-        
-        // TEMPORAL
-//        favoritesStore.trigger(.getFavorites)
-//        print(favoritesStore.state)
+        switch state {
+            case .on:
+                print("ViewModel - Favoriteando \(id)")
+                favoritesStore.trigger(.favorite(id: id))
+            case .off:
+                print("ViewModel - Unfavoriteando \(id)")
+                favoritesStore.trigger(.unfavorite(id: id))
+        }
     }
     
 }
@@ -71,16 +65,8 @@ private extension ListingViewModel {
         listingStore.$state
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
-                switch state {
-                    case .initial:
-                        self?.pokemons = .neverLoaded
-                    case .loading(_):
-                        self?.pokemons = .loading
-                    case .loaded(let results):
-                        self?.pokemons = .loaded(ListingViewModel.mapPokemonState(results))
-                    case .exception(let error):
-                        self?.exception = error
-                }
+                self?.pokemons = state.pokemons.map { ListingViewModel.mapPokemonState($0) }
+                self?.exception = state.exception
             }
             .store(in: &cancellables)
     }
