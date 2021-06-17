@@ -59,14 +59,18 @@ extension ListingViewModel  {
 // MARK: Store State Mapping
 
 private extension ListingViewModel {
-    @Injected static var mapPokemonState: ([Pokemon]) -> [PokemonModel]
+    @Injected static var mapPokemonState: ((pokemons: [Pokemon], favorites: Set<Int>)) -> [PokemonModel]
 
     private func setupViewStates() {
-        listingStore.$state
+        Publishers
+            .CombineLatest(listingStore.$state, favoritesStore.$state)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] state in
-                self?.pokemons = state.pokemons.map { ListingViewModel.mapPokemonState($0) }
-                self?.exception = state.exception
+            .sink { [weak self] states in
+                print("Mapeo Estado ViewModel")
+                print(states)
+                
+                self?.pokemons = states.0.pokemons.map { ListingViewModel.mapPokemonState((pokemons: $0, favorites: states.1.favorites)) }
+                self?.exception = states.0.exception
             }
             .store(in: &cancellables)
     }

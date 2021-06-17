@@ -9,11 +9,14 @@ import AltairMDKCommon
 
 // Modificar con mapper
 final class PokemonMapper: ModelMapper {
-    typealias Entity = [Pokemon]
+    typealias Entity = (pokemons: [Pokemon], favorites: Set<Int>)
     typealias Model = [PokemonModel]
     
-    static var mapEntityToModel: ([Pokemon]) -> [PokemonModel] = { pokemons in
-        return pokemons.compactMap { PokemonModel(id: $0.id, name: $0.name, favorited: .off) }
+    static var mapEntityToModel: ((pokemons: [Pokemon], favorites: Set<Int>)) -> [PokemonModel] = { entity in
+        return entity.pokemons.compactMap { pokemon in
+            let isFavorite = entity.favorites.contains(pokemon.id)
+            return PokemonModel(id: pokemon.id, name: pokemon.name, favorited: isFavorite ? .on : .off )
+        }
     }
 
 }
