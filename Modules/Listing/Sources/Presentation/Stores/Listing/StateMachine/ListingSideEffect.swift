@@ -19,7 +19,6 @@ final class ListingSideEffects {
     func whenLoadingPokemon() -> SideEffect<ListingState, ListingAction> {
         SideEffect { state -> AnyPublisher<ListingAction, Never> in
             guard case .whenLoadingPokemon(let generation) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
-            print("Ejecutando SideEffect SearchPokemon")
             return self.getPokemonUseCase
                 .execute(generation: generation)
                 .map { .searchedPokemonSuccess($0) }

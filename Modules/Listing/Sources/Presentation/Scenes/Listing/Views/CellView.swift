@@ -31,11 +31,11 @@ struct CellView: View {
 
 }
 
-//struct CellView_Previews: PreviewProvider {
-//    private static let fakeModel = PokemonModel(name: "Zapdos", favorited: .off)
-//    static var previews: some View {
-//        CellView(pokemon: .constant(fakeModel))
-//            .previewLayout(.sizeThatFits)
-//            .padding()
-//    }
-//}
+struct CellView_Previews: PreviewProvider {
+    private static let fakeModel = PokemonModel(id: 3, name: "Zapdos", favorited: .off)
+    static var previews: some View {
+        CellView(pokemon: fakeModel, favoriteAction: { _ in })
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}

@@ -39,17 +39,14 @@ extension ListingViewModel  {
     }
     
     func getFavorites() {
-        print("viewModel: GetFavorites")
         favoritesStore.trigger(.getFavorites)
     }
     
     func favoritePokemon(id: Int, state: Toggleable) {
         switch state {
             case .on:
-                print("ViewModel - Favoriteando \(id)")
                 favoritesStore.trigger(.favorite(id: id))
             case .off:
-                print("ViewModel - Unfavoriteando \(id)")
                 favoritesStore.trigger(.unfavorite(id: id))
         }
     }
@@ -65,10 +62,7 @@ private extension ListingViewModel {
         Publishers
             .CombineLatest(listingStore.$state, favoritesStore.$state)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] states in
-                print("Mapeo Estado ViewModel")
-                print(states)
-                
+            .sink { [weak self] states in                
                 self?.pokemons = states.0.pokemons.map { ListingViewModel.mapPokemonState((pokemons: $0, favorites: states.1.favorites)) }
                 self?.exception = states.0.exception
             }

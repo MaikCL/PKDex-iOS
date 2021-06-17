@@ -21,7 +21,6 @@ final class FavoritesSideEffects {
     func whenGetFavorites() -> SideEffect<FavoritesState, FavoritesAction> {
         SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
             guard case .whenGetFavorites = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
-            print("Ejecutando SideEffect GetFavorites")
             return self.getFavoritesUseCase
                 .execute()
                 .map { .getFavoritesSucceeded($0) }
@@ -33,7 +32,6 @@ final class FavoritesSideEffects {
     func whenFavorite() -> SideEffect<FavoritesState, FavoritesAction> {
         SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
             guard case .whenFavorite(let id) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
-            print("Ejecutando SideEffect Adding Favorite id: \(id)")
             return self.addFavoritesUseCase
                 .execute(id: id)
                 .map { .favoriteSucceeded(id: id) }
@@ -45,7 +43,6 @@ final class FavoritesSideEffects {
     func whenUnfavorite() -> SideEffect<FavoritesState, FavoritesAction> {
         SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
             guard case .whenUnfavorite(let id) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
-            print("Ejecutando SideEffect Removing Favorite id: \(id)")
             return self.removeFavoritesUseCase
                 .execute(id: id)
                 .map { .unfavoriteSucceeded(id: id) }
