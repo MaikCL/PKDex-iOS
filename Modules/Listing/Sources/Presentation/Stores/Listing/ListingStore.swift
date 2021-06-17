@@ -18,10 +18,9 @@ final class ListingStore: Store {
     private var input = PassthroughSubject<ListingAction, Never>()
     
     @Injected private var sideEffects: ListingSideEffects
-    @Published private(set) var state: ListingState
+    @Published private(set) var state: ListingState = .initial
     
     init() {
-        state = .initial
         Publishers.store(
             initial: state,
             reduce: ListingReducer.reduce,

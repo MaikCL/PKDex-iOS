@@ -18,10 +18,9 @@ final public class SceneStore: Store {
     private var input: PassthroughSubject<SceneAction, Never> = .init()
     
     @Injected private var sideEffects: SceneSideEffects
-    @Published private(set) public var state: SceneState
+    @Published private(set) public var state: SceneState = .initial
 
     public init() {
-        state = .initial
         Publishers.store(
             initial: state,
             reduce: SceneReducer.reduce(_:_:),

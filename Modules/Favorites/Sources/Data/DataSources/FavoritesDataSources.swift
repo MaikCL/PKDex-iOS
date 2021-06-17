@@ -7,7 +7,6 @@
 
 import Combine
 import AltairMDKProviders
-import CoreData
 
 // TODO: Improve to generic signature "getFavorites<T: Storable>() -> AnyPublisher<[T], StorageException>" - Miguel A. Zapata (13/07/20)
 protocol FavoritesLocalSourceProtocol: AnyObject {
