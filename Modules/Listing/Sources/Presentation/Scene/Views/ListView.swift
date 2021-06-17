@@ -23,9 +23,11 @@ struct ListView<ViewModel: ListingViewModelProtocol>: View {
                     
                 case .loaded(let pokemons):
                     List(pokemons) { pokemon in
-                        CellView(pokemon: pokemon, favoriteAction: { favoriteState in
-                            viewModel.favoritePokemon(id: pokemon.id, state: favoriteState)
-                        })
+                        NavigationLink(destination: viewModel.router?.route(to: .detail(id: "\(pokemon.id)"))) {
+                            CellView(pokemon: pokemon, favoriteAction: { favoriteState in
+                                viewModel.favoritePokemon(id: pokemon.id, state: favoriteState)
+                            })
+                        }
                     }
                     .environment(\.defaultMinListRowHeight, 60.0)
             }
