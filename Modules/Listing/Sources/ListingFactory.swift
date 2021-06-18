@@ -13,7 +13,7 @@ public enum ListingFactory {
 
     public static func makeListingScene(with router: Router) -> some View {
         let viewModel = ListingViewModel(router: router)
-        let scene = ListingScene(viewModel: viewModel)
+        let scene = ListingScene<ListingViewModel>().environmentObject(viewModel)
         return scene.eraseToAnyView()
     }
     

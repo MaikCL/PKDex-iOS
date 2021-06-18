@@ -10,36 +10,30 @@ import Resolver
 import AltairMDKCommon
 
 final class ListingSideEffects {
-    @LazyInjected private var getPokemonUseCase: GetPokemon
+    @Injected private var getPokemonUseCase: GetPokemonByGenerationProtocol
     
-    func whenInput(action: AnyPublisher<ListingAction, Never>) -> SideEffect<ListingAction> {
+    func whenInput(action: AnyPublisher<ListingAction, Never>) -> SideEffect<ListingState, ListingAction> {
         SideEffect { _ in action }
     }
     
-    func whenSearchPokemon() -> SideEffect<ListingAction> {
-        SideEffect { action -> AnyPublisher<ListingAction, Never> in
-            guard case let .searchPokemon(generation) = action else { return Empty().eraseToAnyPublisher() }
-            self.$getPokemonUseCase.args = generation
+    func whenLoadingPokemon() -> SideEffect<ListingState, ListingAction> {
+        SideEffect { state -> AnyPublisher<ListingAction, Never> in
+            guard case .whenLoadingPokemon(let generation) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
             return self.getPokemonUseCase
-                .execute()
+                .execute(generation: generation)
                 .map { .searchedPokemonSuccess($0) }
                 .replaceEmpty(with: .searchedPokemonFailed(ListingException.noResults))
                 .catch { Just(.searchedPokemonFailed($0 as? Exception ?? ListingException.unknown($0))) }
-                .handleEvents(receiveOutput: { input in
-                    guard case let .searchedPokemonFailed(exception) = input else { return }
-                    self.logException(exception)
-                })
                 .eraseToAnyPublisher()
         }
     }
-
-}
-
-extension ListingSideEffects {
     
-    private func logException(_ exception: Exception) {
-        // TODO: Implement apropiated record of exception
-        print("An exception occurred: [\(exception.code)] \(exception.localizedDescription)")
+    func whenExceptionHappen() -> SideEffect<ListingState, ListingAction> {
+        SideEffect { state -> AnyPublisher<ListingAction, Never> in
+            guard case .whenExceptionHappen = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
+            print("An exception occurred: \(String(describing: state.exception?.localizedDescription))")
+            return Empty().eraseToAnyPublisher()
+        }
     }
-    
+
 }
