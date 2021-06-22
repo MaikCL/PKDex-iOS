@@ -29,44 +29,44 @@ The modules that will be built consist of the Base App module, which only acts a
 - **Design**: Module with the design contracts to set up a Design System that can be consumed by the Feature modules (icons, reusable views, color palette, etc.)
 - **APIs**: Module with the detail of third-party APIs that can be directly used by the different Feature modules.
 
-![App Modules](./docs/assets/app-modules.jpg)
+![App Modules](/docs/assets/app-modules.jpg)
 
 The modules will be built with Clean Architecture, this means that the domain layer must contain its own domain entities and their use cases, and must not depend on or know details of the data or presentation layer. In these last layers to avoid the coupling of libraries we are going to use interfaces that encapsulate all the behavior of the functionalities, which will allow us using a strategy pattern (aka [Providers](https://github.com/mzapatae/AltairMDK-iOS/tree/main/Sources/Providers) in the MDK) to be able to change the implementations of the libraries easily (we could easily change to run network calls with NSUrlSession to Alamofire easily).
 
-![Abstract Architecture](./docs/assets/abstract-architecture.jpg)
+![Abstract Architecture](/docs/assets/abstract-architecture.jpg)
 
 In practice, this project shows a structure like the following
 
-![Detail Module Structure](./docs/assets/detail-structure.jpg)
+![Detail Module Structure](/docs/assets/detail-structure.jpg)
 
 ## MVI: Model - View - Intent
 
 MVI is a unidirectional data flow architecture that was designed to be used in reactive programming, where the model represents the source of truth for the application, the intent is an interaction that the user (or the system itself) can trigger and causes the state of the system mute to a new state, which will be rendered in the view. This allows us to make the code more readable and more scalable by adding new states or actions, making it easier to debug it knowing what is the state of the app in any time.
 
-![MVI](./docs/assets/mvi-abstract.jpg)
+![MVI](/docs/assets/mvi-abstract.jpg)
 
 Each module in its presentation layer will be built under an MVI architecture, which will allow us to have a source of truth only in the scope of its domain, which could eventually be imported and read by other modules that need to know the status of that domain. . In addition, each module defines its actions, a reducer that contains the rules to mutate the current state to a new state in response to an action and the module's side effects (which will execute network tasks, database or collateral effects).
 
-![MVI Detail Structure](./docs/assets/mvi-detail.jpg)
+![MVI Detail Structure](/docs/assets/mvi-detail.jpg)
 
 All this behavior will be encapsulated in a Store with which a viewmodel can be imported to connect it to a view
 
-![Store Detail](./docs/assets/store-detail.jpg)
+![Store Detail](/docs/assets/store-detail.jpg)
 
 This allows the stores can be imported by other ViewModels that need to know about states or trigger specific actions handled by that Store. For example, the ViewModel of the Listing module imports the Store of its own module in addition to importing the Store of the Favorites module to be able to render a list of favorite pokemon, as well as the listing can trigger actions of favorites to store or delete favorites.
 
-![Shared Store](./docs/assets/shared-store.jpg)
+![Shared Store](/docs/assets/shared-store.jpg)
 
 ## Roadmap
 
-[*] Implement App Base
-[*] Implement Listing
-[*] Implement Favorites
-[] Implement the Detail module
-[] Make complete battery of unit tests
-[] Improve UI and make them more attractive, in addition to dark mode
-[] Implement CI
-[] Improve implementations with Futures / Promises or Async / Await
+- [x] Implement App Base
+- [x] Implement Listing
+- [x] Implement Favorites
+- [ ] Implement the Detail module
+- [ ] Make complete battery of unit tests
+- [ ] Improve UI and make them more attractive, in addition to dark mode
+- [ ] Implement CI
+- [ ] Improve implementations with Futures / Promises or Async / Await
 
 ## MDK: Mobile Development Kit
 
