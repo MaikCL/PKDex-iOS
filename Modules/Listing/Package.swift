@@ -13,10 +13,12 @@ let package = Package(
             targets: ["Listing"]),
     ],
     dependencies: [
-        .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", .branch("feature/basic-implementation")),
+        .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", from: "0.9.0"),
         .package(url: "https://github.com/hmlongco/Resolver.git", from: "1.4.1"),
+        .package(name: "Favorites", path: "../Favorites"),
         .package(name: "Design", path: "../Design"),
-        .package(name: "APIs", path: "../APIs")
+        .package(name: "APIs", path: "../APIs"),
+        .package(name: "Core", path: "../Core")
     ],
     targets: [
         .target(
@@ -24,8 +26,10 @@ let package = Package(
             dependencies: [
                 "Altair-MDK",
                 "Resolver",
+                "Favorites",
                 "Design",
-                "APIs"
+                "APIs",
+                "Core"
             ],
             path: "Sources")
     ]
