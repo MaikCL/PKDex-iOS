@@ -15,7 +15,7 @@ import Foundation
 
 final class ListingViewModel: ListingViewModelProtocol {
     @ObservedObject private var listingStore: ListingStore = Resolver.resolve()
-    @ObservedObject private var favoritesStore: FavoritesStore = Resolver.resolve()
+//    @ObservedObject private var favoritesStore: FavoritesStore = Resolver.resolve()
 
     @Published var pokemons: Loadable<[PokemonModel]> = .neverLoaded
     @Published var exception: Exception? = .none
@@ -39,16 +39,16 @@ extension ListingViewModel  {
     }
     
     func getFavorites() {
-        favoritesStore.trigger(.getFavorites)
+//        favoritesStore.trigger(.getFavorites)
     }
     
     func favoritePokemon(id: Int, state: Toggleable) {
-        switch state {
-            case .on:
-                favoritesStore.trigger(.favorite(id: id))
-            case .off:
-                favoritesStore.trigger(.unfavorite(id: id))
-        }
+//        switch state {
+//            case .on:
+//                favoritesStore.trigger(.favorite(id: id))
+//            case .off:
+//                favoritesStore.trigger(.unfavorite(id: id))
+//        }
     }
     
 }
@@ -59,14 +59,23 @@ private extension ListingViewModel {
     @Injected static var mapPokemonState: ((pokemons: [Pokemon], favorites: Set<Int>)) -> [PokemonModel]
 
     private func setupViewStates() {
-        Publishers
-            .CombineLatest(listingStore.$state, favoritesStore.$state)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] states in                
-                self?.pokemons = states.0.pokemons.map { ListingViewModel.mapPokemonState((pokemons: $0, favorites: states.1.favorites)) }
-                self?.exception = states.0.exception
-            }
+        listingStore
+            .$state
+            .subscribe(on: DispatchQueue.global())
+            .sink(receiveValue: { [weak self] states in
+                self?.pokemons = states.pokemons.map { ListingViewModel.mapPokemonState((pokemons: $0, favorites: [])) }
+                self?.exception = states.exception
+            })
             .store(in: &cancellables)
+        
+//        Publishers
+//            .CombineLatest(listingStore.$state, favoritesStore.$state)
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] states in
+//                self?.pokemons = states.0.pokemons.map { ListingViewModel.mapPokemonState((pokemons: $0, favorites: states.1.favorites)) }
+//                self?.exception = states.0.exception
+//            }
+//            .store(in: &cancellables)
     }
         
 }
