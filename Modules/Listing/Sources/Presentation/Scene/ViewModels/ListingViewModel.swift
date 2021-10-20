@@ -1,10 +1,3 @@
-//
-//  ListingViewModel.swift
-//  
-//
-//  Created by Miguel Angel on 07-05-21.
-//
-
 import Core
 import Combine
 import SwiftUI
@@ -14,8 +7,8 @@ import AltairMDKCommon
 import Foundation
 
 final class ListingViewModel: ListingViewModelProtocol {
-    @ObservedObject private var listingStore: ListingStore = Resolver.resolve()
-    @ObservedObject private var favoritesStore: FavoritesStore = Resolver.resolve()
+    @ObservedObject private var listingStore: Store<ListingState, ListingAction> = Resolver.resolve()
+    @ObservedObject private var favoritesStore: Store<FavoritesState, FavoritesAction> = Resolver.resolve()
 
     @Published var pokemons: Loadable<[PokemonModel]> = .neverLoaded
     @Published var exception: Exception? = .none
@@ -62,7 +55,7 @@ private extension ListingViewModel {
         Publishers
             .CombineLatest(listingStore.$state, favoritesStore.$state)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] states in                
+            .sink { [weak self] states in
                 self?.pokemons = states.0.pokemons.map { ListingViewModel.mapPokemonState((pokemons: $0, favorites: states.1.favorites)) }
                 self?.exception = states.0.exception
             }

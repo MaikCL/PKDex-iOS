@@ -1,31 +1,20 @@
-//
-//  ListingReducer.swift
-//  
-//
-//  Created by Miguel Angel on 02-05-21.
-//
+import AltairMDKCommon
 
 final class ListingReducer {
-    
-    static func reduce(_ state: ListingState, _ action: ListingAction) -> ListingState {
-        var currentState = state
+     
+    static func reduce(state: inout ListingState, action: ListingAction) -> Void {
         switch action {
-            case .searchPokemon(let generation):
-                currentState.pokemons = .loading
-                currentState.exception = .none
-                currentState.runningSideEffect = .whenLoadingPokemon(generation: generation)
+            case .searchPokemon:
+                state.pokemons = .loading
+                state.exception = .none
                 
             case .searchedPokemonSuccess(let results):
-                currentState.pokemons = .loaded(results)
-                currentState.exception = .none
-                currentState.runningSideEffect = .none
+                state.pokemons = .loaded(results)
+                state.exception = .none
                 
             case .searchedPokemonFailed(let exception):
-                currentState.pokemons = .neverLoaded
-                currentState.exception = exception
-                currentState.runningSideEffect = .whenExceptionHappen
+                state.pokemons = .neverLoaded
+                state.exception = exception
         }
-        return currentState
     }
-    
 }

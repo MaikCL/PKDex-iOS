@@ -1,69 +1,51 @@
-//
-//  FavoriteReducer.swift
-//  
-//
-//  Created by Miguel Angel on 24-05-21.
-//
-
 import Foundation
 
 final class FavoritesReducer {
     
-    static func reduce(_ state: FavoritesState, _ action: FavoritesAction) -> FavoritesState {
+    static func reduce(state: inout FavoritesState, action: FavoritesAction) -> Void {
         let semaphore = DispatchSemaphore(value: 0)
-        var currentState = state
         switch action {
             case .getFavorites:
-                currentState.exception = .none
-                currentState.runningSideEffect = .whenGetFavorites
+                state.exception = .none
                 semaphore.signal()
 
             case .getFavoritesSucceeded(let results):
-                currentState.favorites = results
-                currentState.runningSideEffect = .none
+                state.favorites = results
                 semaphore.signal()
                 
             case .getFavoritesFailed(let exception):
-                currentState.favorites = []
-                currentState.exception = exception
-                currentState.runningSideEffect = .whenExceptionHappen
+                state.favorites = []
+                state.exception = exception
                 semaphore.signal()
                 
-            case .favorite(let id):
-                currentState.exception = .none
-                currentState.runningSideEffect = .whenFavorite(id: id)
+            case .favorite:
+                state.exception = .none
                 semaphore.signal()
                 
             case .favoriteSucceeded(let id):
-                currentState.favorites.insert(id)
-                currentState.exception = .none
-                currentState.runningSideEffect = .none
+                state.favorites.insert(id)
+                state.exception = .none
                 semaphore.signal()
                 
             case .favoriteFailed(let exception):
-                currentState.exception = exception
-                currentState.runningSideEffect = .whenExceptionHappen
+                state.exception = exception
                 semaphore.signal()
                 
-            case .unfavorite(let id):
-                currentState.exception = .none
-                currentState.runningSideEffect = .whenUnfavorite(id: id)
+            case .unfavorite:
+                state.exception = .none
                 semaphore.signal()
                 
             case .unfavoriteSucceeded(let id):
-                currentState.favorites.remove(id)
-                currentState.exception = .none
-                currentState.runningSideEffect = .none
+                state.favorites.remove(id)
+                state.exception = .none
                 semaphore.signal()
                 
             case .unfavoriteFailed(let exception):
-                currentState.exception = exception
-                currentState.runningSideEffect = .whenExceptionHappen
+                state.exception = exception
                 semaphore.signal()
                 
         }
         semaphore.wait()
-        return currentState
     }
 
 }

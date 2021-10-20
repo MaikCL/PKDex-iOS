@@ -1,10 +1,3 @@
-//
-//  PKDexApp.swift
-//  Shared
-//
-//  Created by Miguel Angel on 29-04-21.
-//
-
 import Core
 import SwiftUI
 import Listing
