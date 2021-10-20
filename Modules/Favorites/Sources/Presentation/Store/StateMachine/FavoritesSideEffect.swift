@@ -1,62 +1,43 @@
-//
-//  FavoriteSideEffect.swift
-//  
-//
-//  Created by Miguel Angel on 24-05-21.
-//
-
 import Combine
 import Resolver
 import AltairMDKCommon
 
 final class FavoritesSideEffects {
-    @Injected private var addFavoritesUseCase: AddFavoriteUseCaseProtocol
-    @Injected private var getFavoritesUseCase: GetFavoritesUseCaseProtocol
-    @Injected private var removeFavoritesUseCase: RemoveFavoriteUseCaseProtocol
+    @Injected private static var addFavoritesUseCase: AddFavoriteUseCaseProtocol
+    @Injected private static var getFavoritesUseCase: GetFavoritesUseCaseProtocol
+    @Injected private static var removeFavoritesUseCase: RemoveFavoriteUseCaseProtocol
     
-    func whenInput(action: AnyPublisher<FavoritesAction, Never>) -> SideEffect<FavoritesState, FavoritesAction> {
-        SideEffect { _ in action }
-    }
-    
-    func whenGetFavorites() -> SideEffect<FavoritesState, FavoritesAction> {
-        SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
-            guard case .whenGetFavorites = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
+    static func whenGetFavorites() -> SideEffect<FavoritesState, FavoritesAction> {
+        return { state, action in
+            guard case .getFavorites = action else { return Empty().eraseToAnyPublisher() }
             return self.getFavoritesUseCase
                 .execute()
                 .map { .getFavoritesSucceeded($0) }
-                .catch { Just(.getFavoritesFailed($0 as? Exception ?? FavoritesException.unknown($0))) }
+                .catch { Just(.getFavoritesFailed($0 as? Exception ?? GenericException.unknown($0))) }
                 .eraseToAnyPublisher()
         }
     }
     
-    func whenFavorite() -> SideEffect<FavoritesState, FavoritesAction> {
-        SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
-            guard case .whenFavorite(let id) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
+    static func whenFavorite() -> SideEffect<FavoritesState, FavoritesAction> {
+        return { state, action in
+            guard case .favorite(let id) = action else { return Empty().eraseToAnyPublisher() }
             return self.addFavoritesUseCase
                 .execute(id: id)
                 .map { .favoriteSucceeded(id: id) }
-                .catch { Just(.favoriteFailed($0 as? Exception ?? FavoritesException.unknown($0))) }
+                .catch { Just(.favoriteFailed($0 as? Exception ?? GenericException.unknown($0))) }
                 .eraseToAnyPublisher()
         }
     }
     
-    func whenUnfavorite() -> SideEffect<FavoritesState, FavoritesAction> {
-        SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
-            guard case .whenUnfavorite(let id) = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
+    static func whenUnfavorite() -> SideEffect<FavoritesState, FavoritesAction> {
+        return { state, action in
+            guard case .unfavorite(let id) = action else { return Empty().eraseToAnyPublisher() }
             return self.removeFavoritesUseCase
                 .execute(id: id)
                 .map { .unfavoriteSucceeded(id: id) }
-                .catch { Just(.favoriteFailed($0 as? Exception ?? FavoritesException.unknown($0))) }
+                .catch { Just(.favoriteFailed($0 as? Exception ?? GenericException.unknown($0))) }
                 .eraseToAnyPublisher()
         }
     }
-    
-    func whenExceptionHappen() -> SideEffect<FavoritesState, FavoritesAction> {
-        SideEffect { state -> AnyPublisher<FavoritesAction, Never> in
-            guard case .whenExceptionHappen = state.runningSideEffect else { return Empty().eraseToAnyPublisher() }
-            print("An exception occurred: \(String(describing: state.exception?.localizedDescription))")
-            return Empty().eraseToAnyPublisher()
-        }
-    }
-        
+
 }

@@ -1,12 +1,6 @@
-//
-//  DIComponents.swift
-//  
-//
-//  Created by Miguel Angel on 02-06-21.
-//
-
 import Resolver
 import Foundation
+import AltairMDKCommon
 import AltairMDKProviders
 
 final public class DIComponents {
@@ -26,9 +20,17 @@ final public class DIComponents {
         Resolver.register { RemoveFavoriteUseCase() }.implements(RemoveFavoriteUseCaseProtocol.self)
 
         // MARK: Presentation layer components
-        Resolver.register { FavoritesSideEffects() }
-        Resolver.register { FavoritesStore() }
-        
+        Resolver.register {
+            Store<FavoritesState, FavoritesAction>(
+                state: .initial,
+                reducer: FavoritesReducer.reduce(state:action:),
+                sideEffects: [
+                    FavoritesSideEffects.whenFavorite(),
+                    FavoritesSideEffects.whenUnfavorite(),
+                    FavoritesSideEffects.whenGetFavorites()
+                ])
+        }
+
     }
 
 }
