@@ -10,7 +10,7 @@ import AltairMDKProviders
 
 // TODO: Improve to generic signature "getFavorites<T: Storable>() -> AnyPublisher<[T], StorageException>" - Miguel A. Zapata (13/07/20)
 protocol FavoritesLocalSourceProtocol: AnyObject {
-    func addFavorite(id: Int) -> AnyPublisher<Void, StorageException>
-    func removeFavorite(id: Int) -> AnyPublisher<Void, StorageException>
-    func getFavorites() -> AnyPublisher<[FavoritesLocalModel], StorageException>
+    func addFavorite(id: Int) -> AnyPublisher<Void, Error>
+    func removeFavorite(id: Int) -> AnyPublisher<Void, Error>
+    func getFavorites() -> AnyPublisher<[FavoritesLocalModel], Error>
 }
