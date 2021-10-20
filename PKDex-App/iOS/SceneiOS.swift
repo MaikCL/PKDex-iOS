@@ -8,12 +8,13 @@
 import Core
 import SwiftUI
 import Resolver
+import AltairMDKCommon
 
 struct SceneiOS: Scene {
     @Environment(\.scenePhase) private var phase
     @State private var sceneId = UUID()
     
-    @StateObject private var sceneStore: SceneStore = Resolver.resolve()
+    @StateObject private var sceneStore: Store<SceneState, SceneAction> = Resolver.resolve()
     
     private let router: AppRouter = AppRouter.shared
     
