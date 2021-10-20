@@ -1,15 +1,6 @@
-//
-//  FavoritesException.swift
-//  
-//
-//  Created by Miguel Angel on 08-06-21.
-//
-
 import AltairMDKCommon
 
 enum FavoritesException {
-    /// Unrecognizer Exception with an underlying error
-    case unknown(Error)
 }
 
 extension FavoritesException: Exception {
@@ -23,6 +14,7 @@ extension FavoritesException: Exception {
             case .unknown: return "favorites.ft.01"
         }
     }
+    
     
     var errorDescription: String? {
         switch self {
