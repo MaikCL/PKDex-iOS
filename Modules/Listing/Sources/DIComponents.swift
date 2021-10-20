@@ -1,11 +1,5 @@
-//
-//  DIComponents.swift
-//  
-//
-//  Created by Miguel Angel on 30-04-21.
-//
-
 import Resolver
+import AltairMDKCommon
 import AltairMDKProviders
 
 final public class DIComponents {
@@ -23,9 +17,15 @@ final public class DIComponents {
 
         // MARK: Presentation layer components
         Resolver.register { PokemonMapper.mapEntityToModel }
-        Resolver.register { ListingSideEffects() }
-        Resolver.register { ListingStore() }
-        
+        Resolver.register {
+            Store<ListingState, ListingAction>(
+                state: .initial,
+                reducer: ListingReducer.reduce(state:action:),
+                sideEffects: [
+                    ListingSideEffects.whenSearchPokemon()
+                ])
+        }
+
     }
 
 }

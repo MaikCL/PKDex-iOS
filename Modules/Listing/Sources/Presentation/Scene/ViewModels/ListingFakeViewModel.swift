@@ -1,10 +1,3 @@
-//
-//  ListingFakeViewModel.swift
-//  
-//
-//  Created by Miguel Angel on 10-05-21.
-//
-
 import Core
 import SwiftUI
 import AltairMDKCommon

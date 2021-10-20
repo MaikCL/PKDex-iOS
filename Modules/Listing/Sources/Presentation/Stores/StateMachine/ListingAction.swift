@@ -1,10 +1,3 @@
-//
-//  ListingAction.swift
-//  
-//
-//  Created by Miguel Angel on 02-05-21.
-//
-
 import AltairMDKCommon
 
 enum ListingAction {
