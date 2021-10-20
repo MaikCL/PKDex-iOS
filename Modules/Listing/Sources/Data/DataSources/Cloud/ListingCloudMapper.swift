@@ -1,10 +1,3 @@
-//
-//  ListingCloudMapper.swift
-//  
-//
-//  Created by Miguel Angel on 30-04-21.
-//
-
 import AltairMDKCommon
 
 class ListingCloudMapper: EntityFailableMapper {
