@@ -1,11 +1,4 @@
-//
-//  SceneState.swift
-//  
-//
-//  Created by Miguel Angel on 30-04-21.
-//
-
-import Foundation
+import AltairMDKCommon
 
 public struct SceneState {
     public var loadedScenes: [SceneInfo]

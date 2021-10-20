@@ -1,25 +1,17 @@
-//
-//  SceneReducer.swift
-//  
-//
-//  Created by Miguel Angel on 30-04-21.
-//
-
 import Foundation
+import AltairMDKCommon
 
 final class SceneReducer {
     
-    public static func reduce(_ state: SceneState, _ action: SceneAction) -> SceneState {
-        var currentState = state
+    public static func reduce(state: inout SceneState, action: SceneAction) {
         switch action {
             case .sceneDidActive(id: let id):
-                changeSceneState(&currentState, to: (id: id, phase: .active))
+                changeSceneState(&state, to: (id: id, phase: .active))
             case .sceneDidInactive(id: let id):
-                changeSceneState(&currentState, to: (id: id, phase: .inactive))
+                changeSceneState(&state, to: (id: id, phase: .inactive))
             case .sceneDidBackground(id: let id):
-                changeSceneState(&currentState, to: (id: id, phase: .background))
+                changeSceneState(&state, to: (id: id, phase: .background))
         }
-        return currentState
     }
     
 }
