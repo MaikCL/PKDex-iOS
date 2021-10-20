@@ -13,7 +13,7 @@ let package = Package(
             targets: ["Design"]),
     ],
     dependencies: [
-        .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", from: "0.9.0"),
+        .package(name: "Altair-MDK", url: "https://github.com/mzapatae/AltairMDK-iOS.git", .branch("develop")),
     ],
     targets: [
         .target(

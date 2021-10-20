@@ -26,6 +26,7 @@ struct ExceptionView_Preview: PreviewProvider {
     private struct DummyException: Exception {
         var code: String = "foo.bar.01"
         var category: ExceptionCategory = .feature
+        var errorTitle: String? = "This is a title"
         var errorDescription: String? = "Lorem ipsum dolor sit amet"
     }
     
